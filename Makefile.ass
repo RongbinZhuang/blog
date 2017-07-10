@@ -1,0 +1,14 @@
+.PHONY:clean help list startFlag
+clean:
+	$(RM) $(OBJECTS)
+
+help:
+	$(MAKE) --print-data-base
+
+list:
+	@echo "$(.VARIABLES)" | tr ' ' '\n' | \
+	grep -v MAKEF
+
+startFlag:
+	@echo 
+

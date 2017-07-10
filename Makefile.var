@@ -1,0 +1,5 @@
+GITSSH				:= git@github.com:
+COUNT				:= RongbinZhuang/
+REPO				:= $(notdir $(CURDIR))
+GITURL 				:= $(GITSSH)$(COUNT)$(REPO).git
+BRANCH				:= master
