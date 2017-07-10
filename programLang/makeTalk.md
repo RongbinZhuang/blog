@@ -77,7 +77,8 @@ command5 -> command5 -> command3;command4 -> command5 -> command5 -> command1 ->
 > &emsp; ...    
 > .PHONY:step1    
 > step1:   
-> &emsp; @echo step start   
+> &emsp; @echo step start     
+
 
 	* 较为常见的target:
 
@@ -90,7 +91,8 @@ distclean	| 清除所有生成文件
 info		| 生成信息文件
 check		| 运行测试
 
-[comment]:(this) is a comment()
+[comment]
+	()this is a comment()
 
 匹配规则
 ---
@@ -131,7 +133,7 @@ Makefile当中内置的匹配规则 对于常见的格式文件有通用的处�
 
 	* 预设变量
 	
-	$@ %< $? $^ 
+	$@ %< $? $^   
 
 	VPATH
 
@@ -139,12 +141,12 @@ Makefile当中内置的匹配规则 对于常见的格式文件有通用的处�
 
 	* 自定义函数
 
-	定义
-	define
-	...
-	endef
-	调用
-	$(call functionname,[param1,...])
+	定义     
+	define    
+	...    
+	endef    
+	调用   
+	$(call functionname,[param1,...])   
 
 	* 内置函数
 	$(functionname param1,[param2,...])
@@ -166,10 +168,7 @@ endif
 
 include filename
 
-尝试
----
-
-[我的模板]:(https://github.com/RongbinZhuang/confBak/tree/master/templeteMakefile)
+[我的模板](https://github.com/RongbinZhuang/confBak/tree/master/templeteMakefile)
 
 参考
 ---
