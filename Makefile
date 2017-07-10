@@ -16,5 +16,7 @@ push:startFlag
 	git add .
 	git commit -m "naive"
 	git push $(REPO) $(BRANCH)
+	@echo -e "\nDone"
+	
 	
 include Makefile.ass
