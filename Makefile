@@ -6,13 +6,13 @@ REPO 				:= $(notdir $(CURDIR))
 BRANCH 				:= master
 GITURL 				:= git@github.com:RongbinZhuang/blog.git
 
-all:pull
+all:startFlag pull
 	@echo -e "\nDone"
 
 pull:
 	git pull $(REPO) $(BRANCH)
 
-push:
+push:startFlag
 	git add .
 	git commit -m "naive"
 	git push $(REPO) $(BRANCH)

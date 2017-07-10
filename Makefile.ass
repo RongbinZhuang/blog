@@ -5,10 +5,11 @@ clean:
 help:
 	$(MAKE) --print-data-base
 
-list:
-	@echo "$(.VARIABLES)" | tr ' ' '\n' | \
+listVar:
+	@echo "$(.VARIABLES)" | tr ' ' '\n' | 	\
 	grep -v MAKEF
 
 startFlag:
-	@echo 
+	@STEP=Begin;	\
+	echo -e "$${STEP}\n"
 
