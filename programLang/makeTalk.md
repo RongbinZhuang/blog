@@ -20,10 +20,10 @@ Makefile编写
 target(s)必须为每行的开头，target(s)和prerequisite(s)之间用一个`:`隔开，当有多个targets(prerequisites)时，每个target(prerequisite)之间用空格隔开，而当有多个commands时需要隔成多行，而且每一行的行首都必须为一个`制表符(tab)`。target(s)不可为空，prerequisite(s)为空时意味着target(s)始终需要更新。
 * 自顶向下的搜索和自底向上的运行
 
-> target1:target2		
-> &emsp; command1			
-> target2:			
-> &emsp; command2			
+> target1:target2    
+> &emsp; command1    	
+> target2:    
+> &emsp; command2    
 
 最终目标是要运行`target1`，则程序在寻找到target1的规则后会发现其需要寻找target2的更新规则来查看其是否需要更新进而确定target1是否需要更新，而寻找到target2的规则之后因为后面的prerequisites为空需要更新，于是运行command2来更新，然后回到target1的规则发现target2已更新，于是运行command1来更新target1
 
@@ -60,7 +60,7 @@ command5 -> command5 -> command3;command4 -> command5 -> command5 -> command1 ->
 
 > target1:target2    
 > &emsp; command1     
-> target1:target3		
+> target1:target3    
 > &emsp; command2		
 
 多条规则可以使同一target1在不同的情况下执行不同的更新，即当target2更新而target3未更新时则target1会执行command1来更新，反之则执行command2来更新。而两个同时更新则target1会更新两次
@@ -73,11 +73,11 @@ command5 -> command5 -> command3;command4 -> command5 -> command5 -> command1 ->
 
 	* 因为`Makefile`是自底向上运行的所以难以从其输出结果看出当前运行与整体程序的那一段，这时候可以用个小trick来使输出的结构更清晰:
 
-> program:step1 ...			
-> &emsp; ...		
-> .PHONY:step1		
-> step1:		
-> &emsp; @echo step start		
+> program:step1 ...    		
+> &emsp; ...    
+> .PHONY:step1	    	
+> step1:  
+> &emsp; @echo step start   
 
 	* 较为常见的target:
 
