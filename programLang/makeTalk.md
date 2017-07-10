@@ -31,27 +31,27 @@ Makefile编写
 
 * 多个targets，prerequisites，commands
 
-> all:target1 target2 target3 
-> &emsp; command1 
-> &emsp; command2
-> target1:target2 target3
-> &emsp; command3; \
-> &emsp; command4
-> target2 target3:
-> &emsp; command5
+> all:target1 target2 target3   
+> &emsp; command1    
+> &emsp; command2   
+> target1:target2 target3  
+> &emsp; command3; \  
+> &emsp; command4  
+> target2 target3:  
+> &emsp; command5  
 
 当要执行`all`时，程序会`从左到右`检查`target1`->`target2`->`target3`的规则，而当程序检查到`target1`的规则时又发现其依赖关系为`target2`->`target3`，而`target2`和`target3`在同一行的`targets`中，这意味着他们有相同的依赖关系，根据`target2`的依赖关系空来执行`command5`更新`target2`，然后根据`target3`的依赖关系为空执行`command5`来更新，回到`target1`的规则中，根据更新后的`target2`和`target3`，执行`command3;\ command4`来更新`target1`。同样是两行命令，`command3;\ command4`与`command1 command2`的区别就在于`shell`会将`command3;\ command4`当作一条命令处理，而`command1 command2`当作两条命令令处理。一般情况下`command3;\ command4`的用法都是写循环，如下:
 
-> for i in 1 2 3;\
-> do \
->	@echo $$i;\
+> for i in 1 2 3;\\
+> do \\
+>	@echo $$i;\\
 > done
 
 输出结果为:
 
-> 1
-> 2
-> 3
+> 1  
+> 2  
+> 3  
 
 此`Makefile`最终运行结果为:<br>
 command5 -> command5 -> command3;command4 -> command5 -> command5 -> command1 -> command2
@@ -79,14 +79,15 @@ command5 -> command5 -> command3;command4 -> command5 -> command5 -> command1 ->
 > &emsp; @echo step start
 
 较为常见的`target`
+
 target		| function
----------------------
+------------|--------
 all			| 运行所有程序
----------------------
+------------|--------
 install		| 安装程序
----------------------
+------------|--------
 clean		| 清除中间文件
--------------------------
+------------|------------
 distclean
 
 [comment]:	
