@@ -160,14 +160,14 @@ Makefile当中内置的匹配规则 对于常见的格式文件有通用的处�
 分支
 ---
 
-ifdef variable-name
-ifndef variable-name
-ifeq test
-ifneq test
-...
-[else]
-...
-endif
+ifdef variable-name  
+ifndef variable-name  
+ifeq test  
+ifneq test  
+...  
+[else]  
+...  
+endif  
 
 包含
 ---
