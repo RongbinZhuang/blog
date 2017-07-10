@@ -1,6 +1,6 @@
-# makefile编写
+makefile编写
+===
 1. 基本规则<br>
----
 > 目标:前提<br>
 > &emsp; 命令<br>
 >
