@@ -79,6 +79,7 @@ command5 -> command5 -> command3;command4 -> command5 -> command5 -> command1 ->
 > step1:   
 > &emsp; @echo step start     
 
+\
 
 	* 较为常见的target:
 
@@ -125,11 +126,14 @@ Makefile当中内置的匹配规则 对于常见的格式文件有通用的处�
 * 变量
 	* 赋值
 
-> variable =/:=/?=/+= value
+> variable =/:=/?=/+= value   
+>
+
 
 	* 局部变量
 
-> target...:variable =/:=/?=/+= value
+> target...:variable =/:=/?=/+= value    
+>
 
 	* 预设变量
 	
@@ -145,10 +149,12 @@ Makefile当中内置的匹配规则 对于常见的格式文件有通用的处�
 	define    
 	...    
 	endef    
+
 	调用   
 	$(call functionname,[param1,...])   
 
-	* 内置函数
+	* 内置函数  
+
 	$(functionname param1,[param2,...])
 
 分支
