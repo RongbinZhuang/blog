@@ -21,7 +21,7 @@ target(s)必须为每行的开头，target(s)和prerequisite(s)之间用一个`:
 * 自顶向下的搜索和自底向上的运行
 
 > target1:target2    
-> &emsp; command1    	
+> &emsp; command1    
 > target2:    
 > &emsp; command2    
 
@@ -42,10 +42,10 @@ target(s)必须为每行的开头，target(s)和prerequisite(s)之间用一个`:
 
 当要执行`all`时，程序会`从左到右`检查target1 -> target2 -> target3的规则，而当程序检查到target1的规则时又发现其依赖关系为target2 -> target3，而target2和target3在同一行的targets中，这意味着他们有相同的依赖关系，根据target2的依赖关系空来执行command5更新target2，然后根据target3的依赖关系为空执行command5来更新，回到target1的规则中，根据更新后的target2和target3，执行`command3;\ command4`来更新target1。同样是两行命令，`command3;\ command4`与`command1 command2`的区别就在于`shell`会将`command3;\ command4`当作一条命令处理，而`command1 command2`当作两条命令令处理。一般情况下`command3;\ command4`的用法都是写循环，如下:
 
-> for i in 1 2 3;\\		
-> do \\		
->	@echo $$i;\\		
-> done
+> for i in 1 2 3;\\    
+> do \\  
+>	@echo $$i;\\  
+> done  
 
 输出结果为:
 
@@ -73,10 +73,10 @@ command5 -> command5 -> command3;command4 -> command5 -> command5 -> command1 ->
 
 	* 因为`Makefile`是自底向上运行的所以难以从其输出结果看出当前运行与整体程序的那一段，这时候可以用个小trick来使输出的结构更清晰:
 
-> program:step1 ...    		
+> program:step1 ...    
 > &emsp; ...    
-> .PHONY:step1	    	
-> step1:  
+> .PHONY:step1    
+> step1:   
 > &emsp; @echo step start   
 
 	* 较为常见的target:
@@ -100,9 +100,16 @@ check		| 运行测试
 > %.o:%.c	  
 > &emsp; command(s)  
 
-对于任何后缀名为
+对于target后缀名为.o，只有一个prerequisite且其后缀为.c的，比如：
+> foo.o:foo.c
+若是没有command(s)则采取与`%.o:%.c`相同的command来更新
 
 * 静态匹配
+
+> $(OBJECTS)%.o:%.c
+> &emsp; command(s)
+
+将匹配的范围缩小到$(OBJECTS)中
 
 隐含规则
 ---
@@ -114,9 +121,55 @@ Makefile当中内置的匹配规则 对于常见的格式文件有通用的处�
 ---
 
 * 变量
-	* 基本格式
+	* 赋值
+
+> variable =/:=/?=/+= value
+
+	* 局部变量
+
+> target...:variable =/:=/?=/+= value
+
+	* 预设变量
+	
+	$@ %< $? $^ 
+
+	VPATH
 
 * 函数
+
+	* 自定义函数
+
+	定义
+	define
+	...
+	endef
+	调用
+	$(call functionname,[param1,...])
+
+	* 内置函数
+	$(functionname param1,[param2,...])
+
+分支
+---
+
+ifdef variable-name
+ifndef variable-name
+ifeq test
+ifneq test
+...
+[else]
+...
+endif
+
+包含
+---
+
+include filename
+
+尝试
+---
+
+[我的模板]:(https://github.com/RongbinZhuang/confBak/tree/master/templeteMakefile)
 
 参考
 ---
